@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Identification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://i.pinimg.com/564x/85/1b/5b/851b5ba8da5d83cdc77ba24e9af4ffa3.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: goldenrod;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 0 0 20px;
+            color: #333333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid purple;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #1ba94c;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #158e3d;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .toggle-buttons button {
+            background-color: #eeeeee;
+            color: #555555;
+            width: 30%;
+        }
+
+        .toggle-buttons button.active {
+            background-color: #1ba94c;
+            color: #ffffff;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            color: #158e3d;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .forgot-password:hover {
+            color: #1ba94c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="toggle-buttons">
+            <button id="show-register" class="active">Sign Up</button>
+            <button id="show-login">Login</button>
+            <button id="show-reset">Reset</button>
+        </div>
+        <div id="register-form" class="form-container active">
+            <h2>Registration Form</h2>
+            <form id="registerForm" action="/insert" method="post" onsubmit="return validateForm('register')">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="pass">Password:</label>
+                    <input type="password" id="pass" name="pass" required>
+                </div>
+                <div class="form-group">
+                    <label for="cpass">Confirm Password:</label>
+                    <input type="password" id="cpass" name="cpass" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+        <div id="login-form" class="form-container">
+            <h2>Login Form</h2>
+            <form id="loginForm" action="/login" method="post" onsubmit="return validateForm('login')">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="pass">Password:</label>
+                    <input type="password" id="pass" name="pass" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Login</button>
+                </div>
+                <div class="form-group">
+                    <span class="forgot-password" id="forgot-password-link">Forgot Password?</span>
+                </div>
+            </form>
+        </div>
+        <div id="reset-form" class="form-container">
+            <h2>Reset</h2>
+            <form id="resetForm" action="/reset_password" method="post" onsubmit="return validateForm('reset')">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-pass">New Password:</label>
+                    <input type="password" id="new-pass" name="newPass" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-new-pass">Confirm New Password:</label>
+                    <input type="password" id="confirm-new-pass" name="confirmNewPass" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Update Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const showRegisterButton = document.getElementById('show-register');
+        const showLoginButton = document.getElementById('show-login');
+        const showResetButton = document.getElementById('show-reset');
+        const registerForm = document.getElementById('register-form');
+        const loginForm = document.getElementById('login-form');
+        const resetForm = document.getElementById('reset-form');
+        const forgotPasswordLink = document.getElementById('forgot-password-link');
+
+        showRegisterButton.addEventListener('click', () => {
+            showRegisterButton.classList.add('active');
+            showLoginButton.classList.remove('active');
+            showResetButton.classList.remove('active');
+            registerForm.classList.add('active');
+            loginForm.classList.remove('active');
+            resetForm.classList.remove('active');
+        });
+
+        showLoginButton.addEventListener('click', () => {
+            showRegisterButton.classList.remove('active');
+            showLoginButton.classList.add('active');
+            showResetButton.classList.remove('active');
+            registerForm.classList.remove('active');
+            loginForm.classList.add('active');
+            resetForm.classList.remove('active');
+        });
+
+        showResetButton.addEventListener('click', () => {
+            showRegisterButton.classList.remove('active');
+            showLoginButton.classList.remove('active');
+            showResetButton.classList.add('active');
+            registerForm.classList.remove('active');
+            loginForm.classList.remove('active');
+            resetForm.classList.add('active');
+        });
+
+        forgotPasswordLink.addEventListener('click', () => {
+            showRegisterButton.classList.remove('active');
+            showLoginButton.classList.remove('active');
+            showResetButton.classList.add('active');
+            registerForm.classList.remove('active');
+            loginForm.classList.remove('active');
+            resetForm.classList.add('active');
+        });
+
+        function validateForm(formType) {
+            let password, confirmPassword, email, phone;
+            if (formType === 'register') {
+                password = document.getElementById('pass').value;
+                confirmPassword = document.getElementById('cpass').value;
+                email = document.getElementById('email').value;
+                phone = document.getElementById('phone').value;
+            } else if (formType === 'login') {
+                password = document.getElementById('pass').value;
+                email = document.getElementById('email').value;
+            } else {
+                password = document.getElementById('new-pass').value;
+                confirmPassword = document.getElementById('confirm-new-pass').value;
+                email = document.getElementById('email').value;
+            }
+
+            const minLength = 6;
+            const hasAlphabet = /[a-zA-Z]/.test(password);
+            const hasNumber = /\d/.test(password);
+
+            if (password.length < minLength || !hasAlphabet || !hasNumber) {
+                alert("Password must be at least 6 characters long and contain both alphabets and numbers.");
+                return false;
+            }
+
+            if (formType !== 'login' && password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+            if (!emailRegex.test(email) || !email.endsWith('.com')) {
+                alert("Please enter a valid email address in lowercase with '@' and ending with '.com'.");
+                return false;
+            }
+
+            if (formType === 'register' && (!phone || !/^\d{10}$/.test(phone))) {
+                alert("Phone number must be exactly 10 digits.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+
+</html>

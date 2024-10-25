@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Insert Data</title>
+  <title>Password Validation</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .centered-text {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Insert Data</h1>
+  <form action="/insert" method="post">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control custom-input" id="name" name="name" placeholder="Enter your name">
+    <span id="nameError" class="error"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control custom-input" id="email" name="email" placeholder="Enter your email">
+      <span id="emailError" class="error"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control custom-input" id="password" placeholder="Enter your password">
+      <span id="passwordError" class="error"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" class="form-control custom-input" id="confirmPassword" placeholder="Confirm your password">
+      <span id="confirmPasswordError" class="error"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" class="form-control custom-input" id="phoneNumber" placeholder="Enter your phone number">
+      <span id="phoneNumberError" class="error"></span>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="checkbox" onchange="validateCheckbox()">
+      <label class="form-check-label" for="checkbox">Agree to terms</label>
+      <span id="checkboxError" class="error"></span>
+    </div>
+
+    <div class="form-group">
+      <label>Gender:</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+        <label class="form-check-label" for="male">Male</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+        <label class="form-check-label" for="female">Female</label>
+      </div>
+      <span id="genderError" class="error"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="userType">User Type:</label>
+      <select class="form-control custom-input" id="userType" onchange="populateCourses()">
+        <option value="">Select</option>
+        <option value="BE">BE</option>
+        <option value="BTECH">BTECH</option>
+      </select>
+      <span id="userTypeError" class="error"></span>
+    </div>
+
+    <div class="form-group" id="courseContainer" style="display: none;">
+      <label for="courses">Courses:</label>
+      <select class="form-control custom-input" id="courses">
+      </select>
+      <span id="coursesError" class="error"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="languages">Known Languages:</label><br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="english" value="English">
+        <label class="form-check-label" for="english">English</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="spanish" value="Spanish">
+        <label class="form-check-label" for="spanish">Spanish</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="french" value="French">
+        <label class="form-check-label" for="french">French</label>
+      </div>
+      <span id="languagesError" class="error"></span>
+    </div>
+    <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+  </form>
+  </div>
+
+  </form>
+
+  <h1>Generate Report</h1>
+  <a href="/report">Generate Report</a>
+</body>
+
+</html>

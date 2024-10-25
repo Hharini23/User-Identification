@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dress Shop</title>
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url("https://i.pinimg.com/564x/6d/f2/5f/6df25fb3cf91a3bd26e3e030a99788f9.jpg");
+    color: #ffffff;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    background: #1f1f1f;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid #333333;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 36px;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f0a500;
+}
+
+/* Main content styling */
+main {
+    padding: 40px 20px;
+}
+
+.dresses h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: #f0a500;
+}
+
+.dress-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dress-item {
+    background: #1f1f1f;
+    border: 1px solid #333333;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dress-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dress-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.dress-item h3 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: #f0a500;
+}
+
+.dress-item p {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+/* Footer styling */
+footer {
+    background: #1f1f1f;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid #333333;
+}
+
+/* Adding some responsive design */
+@media (max-width: 600px) {
+    .dress-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dress-item {
+        width: 80%;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <h1>Fashion Frenzy</h1>
+    </header>
+    <main>
+        <section class="dresses">
+            <h2>Our Collection</h2>
+            <div class="dress-grid">
+                <div class="dress-item">
+                    <img src="https://i.pinimg.com/564x/1a/a7/61/1aa761bf3a6117ec761a98e04702277e.jpg" alt="Red Evening Gown">
+                    <h3>Red Evening Gown</h3>
+                    <p>$199.99</p>
+                </div>
+                <div class="dress-item">
+                    <img src="https://i.pinimg.com/564x/96/56/08/965608ba9ad21ff77e271cf2aa4d67bd.jpg" alt="Floral Summer Dress">
+                    <h3>Floral Summer Dress</h3>
+                    <p>$89.99</p>
+                </div>
+                <div class="dress-item">
+                    <img src="https://i.pinimg.com/736x/d6/39/ef/d639efdcc64c847c6d067b5a0fe03009.jpg" alt="Black Cocktail Dress">
+                    <h3>Black Cocktail Dress</h3>
+                    <p>$149.99</p>
+                </div>
+                <!-- Add more dresses as needed -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Dress Shop. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
+
+
